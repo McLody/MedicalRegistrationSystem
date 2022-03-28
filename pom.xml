@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>common</module>
-        <module>common-util</module>
         <module>model</module>
         <module>service</module>
     </modules>
@@ -14,7 +13,7 @@
         <version>2.2.12.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mclody</groupId>
+    <groupId>com.mclody.mrs</groupId>
     <artifactId>MedicalRegistrationSystem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>MedicalRegistrationSystem</name>
