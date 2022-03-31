@@ -1,4 +1,4 @@
-package com.mclody.mrs.hosp.config;
+package com.mclody.mrs.cmn.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.mclody.mrs.hosp.mapper")
-public class HospConfig {
+@MapperScan("com.mclody.mrs.cmn.mapper")
+public class CmnConfig {
 
     @Bean
     public PaginationInterceptor paginationInterceptor(){

@@ -21,6 +21,7 @@ import java.util.Random;
 @Api(tags = "医院设置管理")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
+@CrossOrigin
 public class HospitalSetController {
 
     @Autowired
@@ -47,9 +48,9 @@ public class HospitalSetController {
     }
 
     //条件查询带分页
-    @PostMapping("findPageHospSet/{current}/{limit}")
-    public Result findPageHospSet(@PathVariable long current,
-                                  @PathVariable long limit,
+    @PostMapping("/findPageHospSet/{current}/{limit}")
+    public Result findPageHospSet(@PathVariable Long current,
+                                  @PathVariable Long limit,
                                   @RequestBody(required = false) HospitalSetQueryVo hospitalSetQueryVo){
         Page<HospitalSet> page = new Page<>(current,limit);
         QueryWrapper<HospitalSet> wrapper = new QueryWrapper<>();
@@ -68,7 +69,7 @@ public class HospitalSetController {
     }
 
     //添加医院设置
-    @PostMapping("saveHospitalSet")
+    @PostMapping("/saveHospitalSet")
     public Result saveHospitalSet(@RequestBody HospitalSet hospitalSet){
         hospitalSet.setStatus(1);
         Random random = new Random();
@@ -81,28 +82,28 @@ public class HospitalSetController {
     }
 
     //根据id获取医院位置
-    @GetMapping("getHospSet/{id}")
+    @GetMapping("/getHospSet/{id}")
     public Result getHospSet(@PathVariable Long id){
         HospitalSet hospitalSet = hospitalSetService.getById(id);
         return Result.ok(hospitalSet);
     }
 
     //修改医院设置
-    @PostMapping("updateHospitalSet")
+    @PostMapping("/updateHospitalSet")
     public Result updateHospitalSet(@RequestBody HospitalSet hospitalSet){
         boolean flag = hospitalSetService.updateById(hospitalSet);
         return flag? Result.ok() : Result.fail();
     }
 
     //批量删除医院
-    @DeleteMapping("batchRemove")
+    @DeleteMapping("/batchRemove")
     public Result  batchRemoveHospitalSet(@RequestBody List<Long> idList){
         boolean flag = hospitalSetService.removeByIds(idList);
         return flag? Result.ok() : Result.fail();
     }
 
     //设定状态解锁与否
-    @PutMapping("lockHospitalSet/{id}/{status}")
+    @PutMapping("/lockHospitalSet/{id}/{status}")
     public Result lockHospitalSet(@PathVariable Long id,
                                   @PathVariable Integer status){
         hospitalSetService.update(new UpdateWrapper<HospitalSet>().set("status",status).eq("id",id));
@@ -110,7 +111,7 @@ public class HospitalSetController {
     }
 
     //发送签名秘钥
-    @PutMapping("sendKey/{id}")
+    @PutMapping("/sendKey/{id}")
     public Result sendKey(@PathVariable Long id){
         HospitalSet hospitalSet = hospitalSetService.getById(id);
         String hoscode = hospitalSet.getHoscode();
